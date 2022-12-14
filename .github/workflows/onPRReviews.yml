@@ -17,7 +17,6 @@ jobs:
     outputs:
       issue-number: ${{ steps.commitMsgParser.outputs.issue-number }}
       issue-content-id: ${{ steps.commitMsgParser.outputs.issue-content-id }}
-      pr-content-id: ${{ steps.commitMsgParser.outputs.pr-content-id }}
     steps:
       - name: Extract Issue Number from PR
         uses: 3drepo/extract-pr-information@v1
