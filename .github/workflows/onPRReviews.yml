@@ -122,7 +122,7 @@ jobs:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
           project_number: 22
-          content_id: ${{github.event.client_payload.command.resource.id }}
+          content_id: ${{github.event.pull_request.node_id }}
           field: Status
           value: ${{ steps.setStatusOutputPR.outputs.status }}
 
