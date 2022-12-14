@@ -34,6 +34,7 @@ jobs:
   update-project-status:
     name: Update status of the issue in the project
     runs-on: ubuntu-latest
+    needs: get-details
     steps:
       - name: Update status in the Project
         if: ${{github.event.pull_request.merged}}
