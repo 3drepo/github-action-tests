@@ -40,7 +40,7 @@ jobs:
       - name: Setup value to change
         id: setValue
         run: |
-          echo "status=Address Feedback" >> $GITHUB_OUTPUT
+          echo "status=Done" >> $GITHUB_OUTPUT
       - name: Update status in the Project
         #        if: ${{github.event.pull_request.merged}}
         id: update_status
