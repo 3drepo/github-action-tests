@@ -39,7 +39,7 @@ jobs:
           operation: read
       - name: Apply issue sprint to PR
         uses: 3drepo/update-project-action@update-PR
-        if: ${{toJson(steps.issue-sprint.outputs.field_read_value) != "null"}}
+        if: ${{toJson(steps.issue-sprint.outputs.field_read_value) != 'null'}}
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
