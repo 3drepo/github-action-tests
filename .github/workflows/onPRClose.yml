@@ -19,6 +19,17 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         id: commitMsgParser
 
+  debug:
+    name: Debugging my sanity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump stuff
+        env:
+          TEST: ${{toJson(github.event.pull_request.base)}}
+        run: |
+          echo "$TEST"
+
+
   tag-on-pr-merge:
     name: Tag merged issues as In staging if applicable
     runs-on: ubuntu-latest
