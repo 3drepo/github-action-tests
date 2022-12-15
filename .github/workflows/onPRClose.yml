@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply in staging label
-        if: ${{github.event.pull_request.merged && github.event.pull_request.base == 'staging'}}
+        if: ${{github.event.pull_request.merged && github.event.pull_request.base.label == 'staging'}}
         uses: carmenfan/any-issue-labeller@v1.1
         with:
           issue-number: ${{ needs.get-details.outputs.issue-number }}
