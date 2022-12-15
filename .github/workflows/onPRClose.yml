@@ -37,6 +37,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: get-details
     steps:
+      - name: Setup value to change
+      - id: setValue
+      - run: |
+          set -ex
+              echo "status=Address Feedback" >> $GITHUB_OUTPUT
+              ;;
+          esac
       - name: Update status in the Project
         #        if: ${{github.event.pull_request.merged}}
         id: update_status
@@ -47,7 +54,7 @@ jobs:
           project_number: 22
           content_id: ${{ needs.get-details.outputs.issue-content-id }}
           field: Status
-          value: 'Done'
+          value: ${{ steps.setValue.outputs.status }}
 
   destroy-deployed-branch:
     name: Call Azure Destroy Pipeline
