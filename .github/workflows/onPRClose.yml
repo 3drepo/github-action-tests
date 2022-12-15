@@ -9,13 +9,11 @@ jobs:
     outputs:
       issue-number: ${{ steps.commitMsgParser.outputs.issue-number }}
       issue-content-id: ${{ steps.commitMsgParser.outputs.issue-content-id }}
-      merged: ${{ steps.commitMsgParser.outputs.merged }}
     steps:
       - name: Extract Issue Number from PR
         uses: 3drepo/extract-pr-information@v1
         with:
           pr: ${{ github.event.number }}
-          base: staging
           github-token: ${{ secrets.GITHUB_TOKEN }}
         id: commitMsgParser
 

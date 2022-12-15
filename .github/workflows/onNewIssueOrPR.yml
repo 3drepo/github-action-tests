@@ -15,3 +15,31 @@ jobs:
         with:
           project-url: 'https://github.com/orgs/3drepo/projects/22'
           github-token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
+      - name: Extract issue Number from PR
+        if: ${{github.event.pull_request.number}}
+        id: issue-details
+        uses: 3drepo/extract-pr-information@v1
+        with:
+          pr: ${{ github.event.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get issue sprint
+        id: issue-sprint
+        uses: 3drepo/update-project-action@v1.1
+        with:
+          github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
+          organization: 3drepo
+          project_number: 22
+          content_id: ${{ steps.issue-details.outputs.issue-content-id}}
+          field: Sprint
+          operation: read
+      - name: Apply issue sprint to PR
+        uses: 3drepo/update-project-action@update-PR
+        with:
+          github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
+          organization: 3drepo
+          project_number: 22
+          content_id: ${{ github.event.pull_request.node_id}}
+          field: Sprint
+          value: steps.issue-sprint.outputs.field_read_value
+
+
