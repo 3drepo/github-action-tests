@@ -38,8 +38,8 @@ jobs:
     needs: get-details
     steps:
       - name: Setup value to change
-      - id: setValue
-      - run: |
+        id: setValue
+        run: |
           set -ex
               echo "status=Address Feedback" >> $GITHUB_OUTPUT
               ;;
