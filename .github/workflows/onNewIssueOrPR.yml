@@ -40,6 +40,6 @@ jobs:
           project_number: 22
           content_id: ${{ github.event.pull_request.node_id}}
           field: Sprint
-          value: steps.issue-sprint.outputs.field_read_value
+          value: ${{steps.issue-sprint.outputs.field_read_value}}
 
 
