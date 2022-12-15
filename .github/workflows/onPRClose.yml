@@ -37,10 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: get-details
     steps:
-      - name: Setup value to change
-        id: setValue
-        run: |
-          echo "status=Merged" >> $GITHUB_OUTPUT
       - name: Update status in the Project
         #        if: ${{github.event.pull_request.merged}}
         id: update_status
@@ -51,7 +47,7 @@ jobs:
           project_number: 22
           content_id: ${{ needs.get-details.outputs.issue-content-id }}
           field: Status
-          value: ${{ steps.setValue.outputs.status }}
+          value: Merged
 
   destroy-deployed-branch:
     name: Call Azure Destroy Pipeline
