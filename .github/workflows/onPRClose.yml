@@ -38,7 +38,7 @@ jobs:
     needs: get-details
     steps:
       - name: Update status in the Project
-        #        if: ${{github.event.pull_request.merged}}
+        if: ${{github.event.pull_request.merged}}
         id: update_status
         uses: 3drepo/update-project-action@v1.1
         with:
