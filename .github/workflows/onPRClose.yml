@@ -9,13 +9,11 @@ jobs:
     outputs:
       issue-number: ${{ steps.commitMsgParser.outputs.issue-number }}
       issue-content-id: ${{ steps.commitMsgParser.outputs.issue-content-id }}
-      merged: ${{ steps.commitMsgParser.outputs.merged }}
     steps:
       - name: Extract Issue Number from PR
         uses: 3drepo/extract-pr-information@v1
         with:
           pr: ${{ github.event.number }}
-          base: staging
           github-token: ${{ secrets.GITHUB_TOKEN }}
         id: commitMsgParser
 
@@ -47,7 +45,7 @@ jobs:
           project_number: 22
           content_id: ${{ needs.get-details.outputs.issue-content-id }}
           field: Status
-          value: Done
+          value: Merged
 
   destroy-deployed-branch:
     name: Call Azure Destroy Pipeline
