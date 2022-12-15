@@ -37,14 +37,9 @@ jobs:
           content_id: ${{ steps.issue-details.outputs.issue-content-id}}
           field: Sprint
           operation: read
-      - name: debug
-        run: |
-          echo $DATA
-        env:
-          DATA: ${{toJson(steps.issue-sprint.outputs.field_read_value)}}
       - name: Apply issue sprint to PR
         uses: 3drepo/update-project-action@update-PR
-        if: ${{steps.issue-sprint.outputs.field_read_value != null}}
+        if: ${{toJson(steps.issue-sprint.outputs.field_read_value) != "null"}}
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
