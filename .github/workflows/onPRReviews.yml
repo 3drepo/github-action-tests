@@ -3,9 +3,7 @@ on:
   pull_request:
     types: [ready_for_review, review_requested, review_request_removed]
   pull_request_review:
-    types: [edited, dismissed, submitted]
-  pull_request_review_comment:
-    types: [created]
+    types: [submitted]
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -48,6 +46,8 @@ jobs:
       status: ${{ steps.setStatusOutputIssue.outputs.status }}
     needs: [ get-details, check-merge-ready ]
     steps:
+      - name: debug
+        run: echo ${{toJson(github.event)}}
       - name: Set status message for issue
         id: setStatusOutputIssue
         run: |
