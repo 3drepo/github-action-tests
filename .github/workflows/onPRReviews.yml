@@ -49,9 +49,9 @@ jobs:
       - name: getStatus
         uses: haya14busa/action-cond@v1
         with:
-          cond: ${{ github.event_name == 'pull_request' }}
-          if_true: ${{ github.event.action }}
-          if_false: ${{ github.event.review.status }}
+          cond: ${{ github.event.action == 'submitted' }}
+          if_true: ${{ github.event.review.status }}
+          if_false: ${{ github.event.action }}
         id: statusExtractor
       - name: Set status message for issue
         id: setStatusOutputIssue
