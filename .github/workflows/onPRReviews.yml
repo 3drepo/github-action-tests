@@ -46,14 +46,19 @@ jobs:
       status: ${{ steps.setStatusOutputIssue.outputs.status }}
     needs: [ get-details, check-merge-ready ]
     steps:
-      - name: debug
-        run: echo ${{toJson(github.event)}}
+      - name: getStatus
+        uses: haya14busa/action-cond@v1
+        with:
+          cond: ${{ github.event_name == 'pull_request' }}
+          if_true: ${{ github.event.action }}
+          if_false: ${{ github.event.review.status }}
+        id: statusExtractor
       - name: Set status message for issue
         id: setStatusOutputIssue
         run: |
           set -ex
           case $ACTION in
-            submitted )
+            changes_requested )
               echo "status=Address Feedback" >> $GITHUB_OUTPUT
               ;;
             review_requested )
@@ -67,7 +72,7 @@ jobs:
               ;;
           esac
         env:
-          ACTION: ${{ github.event.action }}
+          ACTION: ${{ steps.statusExtractor.outputs.value }}
 
       - name: Update status on the Issue
         if: ${{ steps.setStatusOutputIssue.outputs.status }}
