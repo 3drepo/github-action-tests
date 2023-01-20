@@ -61,9 +61,6 @@ jobs:
             changes_requested )
               echo "status=Address Feedback" >> $GITHUB_OUTPUT
               ;;
-            approved )
-              echo "status=Approved" >> $GITHUB_OUTPUT
-              ;;
             review_requested )
               echo "status=Awaiting Approval" >> $GITHUB_OUTPUT
               ;;
