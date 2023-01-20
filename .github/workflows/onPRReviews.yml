@@ -46,11 +46,13 @@ jobs:
       status: ${{ steps.setStatusOutputIssue.outputs.status }}
     needs: [ get-details, check-merge-ready ]
     steps:
+      - name: debug
+        run:  ${{ toJson(github.event.review) }}
       - name: getStatus
         uses: haya14busa/action-cond@v1
         with:
           cond: ${{ github.event.action == 'submitted' }}
-          if_true: ${{ github.event.review.status }}
+          if_true: "hi"
           if_false: ${{ github.event.action }}
         id: statusExtractor
       - name: Set status message for issue
