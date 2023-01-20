@@ -1,2 +1,4 @@
 
 *.swp
+*.swo
+.github/workflows/.onPRReviews.yml.swo
