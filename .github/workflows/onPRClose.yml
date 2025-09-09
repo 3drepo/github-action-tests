@@ -2,6 +2,9 @@ name: On PR closed
 on:
   pull_request:
     types: [closed]
+permissions:
+  contents: read
+  issues: write
 jobs:
   get-details:
     name: Get Current Issue Details
@@ -28,7 +31,7 @@ jobs:
         with:
           issue-number: ${{ needs.get-details.outputs.issue-number }}
           label: 'in staging'
-          github-token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN}}
 
   update-project-status:
     name: Update status of the issue in the project
