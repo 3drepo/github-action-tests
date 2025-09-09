@@ -28,7 +28,7 @@ jobs:
         with:
           issue-number: ${{ needs.get-details.outputs.issue-number }}
           label: 'in staging'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
 
   update-project-status:
     name: Update status of the issue in the project
