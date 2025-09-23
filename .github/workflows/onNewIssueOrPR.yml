@@ -6,6 +6,10 @@ on:
   pull_request:
     types: [opened]
 
+permissions:
+  issues: write
+  projects: write
+
 jobs:
   add-to-project:
     name: Add issue/PR to project
