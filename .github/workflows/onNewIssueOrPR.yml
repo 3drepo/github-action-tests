@@ -64,7 +64,7 @@ jobs:
           field: 'Feature Progress'
           value: 'QA'
       - name: Apply issue sprint to PR
-        uses: 3drepo/update-project-action@main
+        uses: 3drepo/update-project-action@2.0
         if: ${{steps.issue-sprint.outputs.field_read_value}}
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
