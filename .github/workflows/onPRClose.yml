@@ -48,7 +48,7 @@ jobs:
           project_number: 22
           content_id: ${{ needs.get-details.outputs.issue-content-id }}
           field: Status
-          value: Merged
+          value: Done
 
   destroy-deployed-branch:
     name: Call Azure Destroy Pipeline
