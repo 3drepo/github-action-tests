@@ -23,7 +23,7 @@ jobs:
     if: ${{github.event.issue.number}}
     steps:
       - name: Apply issue sprint to PR
-        uses: 3drepo/update-project-action@2.0
+        uses: 3drepo/update-project-action@main
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
@@ -45,7 +45,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get issue sprint
         id: issue-sprint
-        uses: 3drepo/update-project-action@2.0
+        uses: 3drepo/update-project-action@main
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
@@ -55,7 +55,7 @@ jobs:
           operation: read
       - name: Set issue to QA
         id: issue-to-qa
-        uses: 3drepo/update-project-action@2.0
+        uses: 3drepo/update-project-action@main
         with:
           github_token: ${{ secrets.PROJ_MANAGEMENT_TOKEN }}
           organization: 3drepo
